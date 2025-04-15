@@ -5,7 +5,7 @@
 [![Docker](https://img.shields.io/badge/Docker-Control-2496ED.svg)](https://www.docker.com)
 [![SSH](https://img.shields.io/badge/SSH-Enabled-black.svg)](https://www.ssh.com)
 
-A powerful Discord bot that lets you control Docker containers via SSH like a goddamn DevOps warlock. Perfect for server admins who want to manage their infrastructure directly from Discord.
+A powerful Discord bot that lets you control Docker containers via SSH. Perfect for server admins who want to manage their infrastructure directly from Discord.
 
 <p align="center">
   <img src="https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png" alt="Docker Logo" width="200">
