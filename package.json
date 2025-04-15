@@ -1,12 +1,29 @@
 {
-  "name": "ssh-docker-discord-bot",
+  "name": "ssh-discord-bot",
   "version": "1.0.0",
-  "description": "A Discord bot that controls Docker via SSH",
+  "description": "A Discord bot that controls Docker containers via SSH",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nhyyebo/ssh-discord-bot.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "docker",
+    "ssh",
+    "devops"
+  ],
+  "author": "nhyyebo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nhyyebo/ssh-discord-bot/issues"
+  },
+  "homepage": "https://github.com/nhyyebo/ssh-discord-bot#readme",
   "dependencies": {
     "discord.js": "^14.14.1",
     "dotenv": "^16.3.1",

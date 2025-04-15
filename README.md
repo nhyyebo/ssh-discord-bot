@@ -47,8 +47,8 @@ A powerful Discord bot that lets you control Docker containers via SSH like a go
 
 1. **Clone this repository**
    ```bash
-   git clone https://github.com/yourusername/ssh-docker-discord-bot.git
-   cd ssh-docker-discord-bot
+   git clone https://github.com/nhyyebo/ssh-discord-bot.git
+   cd ssh-discord-bot
    ```
 
 2. **Install dependencies**
@@ -88,8 +88,8 @@ This bot can be run in a Docker container for easier deployment and management.
 
 1. **Clone this repository**
    ```bash
-   git clone https://github.com/yourusername/ssh-docker-discord-bot.git
-   cd ssh-docker-discord-bot
+   git clone https://github.com/nhyyebo/ssh-discord-bot.git
+   cd ssh-discord-bot
    ```
 
 2. **Create a Discord bot and configure environment variables**
@@ -123,28 +123,20 @@ This bot can be run in a Docker container for easier deployment and management.
 The included Dockerfile uses a multi-stage build process to create a lightweight container:
 
 ```dockerfile
-FROM node:18-alpine AS builder
-
-WORKDIR /app
-
-COPY package*.json ./
-
-RUN npm ci --only=production
-
 FROM node:18-alpine
 
 WORKDIR /app
 
-COPY --from=builder /app/node_modules ./node_modules
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy app source
 COPY . .
 
-# Create a non-root user to run the application
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nodejs -u 1001 && \
-    chown -R nodejs:nodejs /app
-
-USER nodejs
-
+# Start the bot
 CMD ["node", "index.js"]
 ```
 
@@ -211,8 +203,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 💻 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
+Contributions, issues, and feature requests are welcome! Feel free to check the issues page at [https://github.com/nhyyebo/ssh-discord-bot/issues](https://github.com/nhyyebo/ssh-discord-bot/issues).
 
 ## 📧 Support
 
-If you need help setting up or using this bot, please open an issue on GitHub. 
+If you need help setting up or using this bot, please open an issue on GitHub at [https://github.com/nhyyebo/ssh-discord-bot/issues](https://github.com/nhyyebo/ssh-discord-bot/issues). 
