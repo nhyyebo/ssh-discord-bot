@@ -1,0 +1,18 @@
+{
+  "name": "ssh-docker-discord-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot that controls Docker via SSH",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1",
+    "node-ssh": "^13.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+} 

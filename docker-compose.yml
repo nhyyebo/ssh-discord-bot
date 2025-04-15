@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  ssh-docker-bot:
+    build: .
+    container_name: ssh-docker-bot
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./:/app
+      - /app/node_modules 
