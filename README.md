@@ -5,7 +5,7 @@
 [![Docker](https://img.shields.io/badge/Docker-Control-2496ED.svg)](https://www.docker.com)
 [![SSH](https://img.shields.io/badge/SSH-Enabled-black.svg)](https://www.ssh.com)
 
-A powerful Discord bot that lets you control Docker containers via SSH like a goddamn DevOps warlock. Perfect for server admins who want to manage their infrastructure directly from Discord.
+A powerful Discord bot that lets you control Docker containers via SSH. Perfect for server admins who want to manage their infrastructure directly from Discord.
 
 <p align="center">
   <img src="https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png" alt="Docker Logo" width="200">
@@ -20,6 +20,7 @@ A powerful Discord bot that lets you control Docker containers via SSH like a go
 - **Command Autocomplete** - Container name suggestions as you type
 - **Command Usage Logging** - Track who's managing your infrastructure
 - **Comprehensive System Monitoring** - For both Docker and VPS resources
+- **Interactive Terminal Session** - Direct SSH access through Discord chat
 
 ## 🧰 Commands
 
@@ -34,6 +35,22 @@ A powerful Discord bot that lets you control Docker containers via SSH like a go
 | `/docker-info` | Show Docker system information | `/docker-info` |
 | `/ssh-system` | Show VPS system information (CPU/RAM/Disk) | `/ssh-system` |
 | `/terminal` | Start an interactive terminal session | Type `STOP` to end session |
+
+## 🖥️ Interactive Terminal
+
+The `/terminal` command gives you direct SSH access through Discord:
+
+- **Start a session** - Use `/terminal` to begin an interactive session
+- **Execute commands** - Simply type any command in the channel
+- **Working directory tracking** - The bot keeps track of your current directory
+- **Security restrictions** - Dangerous commands (rm -rf /, etc.) are blocked
+- **Automatic timeout** - Sessions end after 5 minutes of inactivity
+- **Session control** - Type `STOP` at any time to end the session
+- **Focused interaction** - Only the user who started the session can interact with it
+
+<p align="center">
+  <img src="https://i.imgur.com/8ZwCRr8.png" alt="Terminal Session Example" width="600">
+</p>
 
 ## 🔧 Setup & Installation
 
@@ -186,8 +203,6 @@ The SSH user specified in the configuration needs the following permissions on t
 ## 🛡️ Security Considerations
 
 - The bot stores SSH credentials in an `.env` file, which should be kept secure
-- **NEVER commit your `.env` file or share your Discord token**
-- If your Discord token is exposed in public, Discord will automatically invalidate it
 - Consider using a dedicated SSH user with limited permissions for the bot
 - For production use, consider implementing SSH key-based authentication instead of password
 - When using Docker, ensure your `.env` file is not included in the image build
@@ -202,6 +217,8 @@ The SSH user specified in the configuration needs the following permissions on t
   - 🔵 Blue: Information/General state
 - **System Resource Monitoring** - Real-time CPU, RAM, disk usage from your VPS
 - **Interactive Terminal** - Execute any SSH command directly from Discord with the `/terminal` command
+- **Security-Focused Design** - Dangerous terminal commands are automatically blocked
+- **Working Directory Tracking** - Terminal sessions maintain current directory when using cd commands
 
 ## 📜 License
 
