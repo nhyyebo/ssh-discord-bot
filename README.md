@@ -33,6 +33,7 @@ A powerful Discord bot that lets you control Docker containers via SSH like a go
 | `/docker-list` | List all containers with their status | `/docker-list` |
 | `/docker-info` | Show Docker system information | `/docker-info` |
 | `/ssh-system` | Show VPS system information (CPU/RAM/Disk) | `/ssh-system` |
+| `/terminal` | Start an interactive terminal session | Type `STOP` to end session |
 
 ## 🔧 Setup & Installation
 
@@ -70,12 +71,14 @@ A powerful Discord bot that lets you control Docker containers via SSH like a go
    - Create a `.env` file in the project root
    - Add the following variables:
    ```
-   DISCORD_TOKEN=your_discord_bot_token
+   DISCORD_TOKEN=your_discord_bot_token_here
    SSH_HOST=your_vps_host
    SSH_PORT=22
    SSH_USERNAME=your_ssh_username
    SSH_PASSWORD=your_ssh_password
    ```
+   - **IMPORTANT**: Never commit your `.env` file to Git or share your tokens publicly
+   - If you accidentally expose your Discord token, immediately reset it in the Discord Developer Portal
 
 5. **Run the bot**
    ```bash
@@ -183,6 +186,8 @@ The SSH user specified in the configuration needs the following permissions on t
 ## 🛡️ Security Considerations
 
 - The bot stores SSH credentials in an `.env` file, which should be kept secure
+- **NEVER commit your `.env` file or share your Discord token**
+- If your Discord token is exposed in public, Discord will automatically invalidate it
 - Consider using a dedicated SSH user with limited permissions for the bot
 - For production use, consider implementing SSH key-based authentication instead of password
 - When using Docker, ensure your `.env` file is not included in the image build
@@ -196,6 +201,7 @@ The SSH user specified in the configuration needs the following permissions on t
   - 🟡 Yellow: Warning/Restarting/Paused
   - 🔵 Blue: Information/General state
 - **System Resource Monitoring** - Real-time CPU, RAM, disk usage from your VPS
+- **Interactive Terminal** - Execute any SSH command directly from Discord with the `/terminal` command
 
 ## 📜 License
 
