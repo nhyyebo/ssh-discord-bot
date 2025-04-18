@@ -238,12 +238,38 @@ client.on('interactionCreate', async interaction => {
 
 // Connect to SSH
 async function connectSSH() {
-  return ssh.connect({
+  const sshConfig = {
     host: process.env.SSH_HOST,
-    port: process.env.SSH_PORT,
-    username: process.env.SSH_USERNAME,
-    password: process.env.SSH_PASSWORD
-  });
+    port: process.env.SSH_PORT || 22,
+    username: process.env.SSH_USERNAME
+  };
+  
+  // Support both password and key-based authentication
+  if (process.env.SSH_PRIVATE_KEY_PATH) {
+    // Use private key authentication if a key path is provided
+    console.log('Using SSH key authentication');
+    sshConfig.privateKey = fs.readFileSync(process.env.SSH_PRIVATE_KEY_PATH, 'utf8');
+    
+    // Add passphrase if provided
+    if (process.env.SSH_KEY_PASSPHRASE) {
+      sshConfig.passphrase = process.env.SSH_KEY_PASSPHRASE;
+    }
+  } else if (process.env.SSH_PRIVATE_KEY) {
+    // Use private key directly from env if provided
+    console.log('Using SSH key from environment');
+    sshConfig.privateKey = process.env.SSH_PRIVATE_KEY;
+    
+    // Add passphrase if provided
+    if (process.env.SSH_KEY_PASSPHRASE) {
+      sshConfig.passphrase = process.env.SSH_KEY_PASSPHRASE;
+    }
+  } else {
+    // Fall back to password authentication
+    console.log('Using SSH password authentication');
+    sshConfig.password = process.env.SSH_PASSWORD;
+  }
+  
+  return ssh.connect(sshConfig);
 }
 
 // Get container names for autocomplete

@@ -13,7 +13,7 @@ A powerful Discord bot that lets you control Docker containers via SSH. Perfect 
 
 ## ✨ Features
 
-- **Secure SSH Authentication** - Password-based SSH access to your VPS
+- **Secure SSH Authentication** - Support for both password and SSH key-based access to your VPS
 - **Docker Management via Slash Commands** - Modern Discord slash commands for all operations
 - **Container Name-Based Control** - Forget IDs, manage containers by name
 - **Beautiful Embedded Responses** - Color-coded status indicators with Docker logo
@@ -88,11 +88,25 @@ The `/terminal` command gives you direct SSH access through Discord:
    - Create a `.env` file in the project root
    - Add the following variables:
    ```
+   # Required variables
    DISCORD_TOKEN=your_discord_bot_token_here
    SSH_HOST=your_vps_host
    SSH_PORT=22
    SSH_USERNAME=your_ssh_username
+   
+   # Choose ONE authentication method:
+   
+   # Option 1: Password authentication
    SSH_PASSWORD=your_ssh_password
+   
+   # Option 2: SSH key file authentication (more secure)
+   # SSH_PRIVATE_KEY_PATH=/path/to/your/private/key
+   
+   # Option 3: SSH key directly in environment variable
+   # SSH_PRIVATE_KEY=-----BEGIN RSA PRIVATE KEY-----\nYOUR_PRIVATE_KEY_CONTENT_HERE\n-----END RSA PRIVATE KEY-----
+   
+   # Optional: Key passphrase (if your key has one)
+   # SSH_KEY_PASSPHRASE=your_key_passphrase
    ```
    - **IMPORTANT**: Never commit your `.env` file to Git or share your tokens publicly
    - If you accidentally expose your Discord token, immediately reset it in the Discord Developer Portal
@@ -202,9 +216,14 @@ The SSH user specified in the configuration needs the following permissions on t
 
 ## 🛡️ Security Considerations
 
-- The bot stores SSH credentials in an `.env` file, which should be kept secure
-- Consider using a dedicated SSH user with limited permissions for the bot
-- For production use, consider implementing SSH key-based authentication instead of password
+- The bot supports both password and key-based SSH authentication
+- **Key-based authentication** is strongly recommended over password authentication
+- When using SSH keys, you can either:
+  - Point to a private key file on the system running the bot (`SSH_PRIVATE_KEY_PATH`)
+  - Provide the key content directly in the `.env` file (`SSH_PRIVATE_KEY`)
+- For maximum security, use a dedicated SSH user with restricted permissions
+- Consider using an SSH key with a passphrase for an additional layer of security
+- The bot never logs or exposes your SSH credentials to Discord users
 - When using Docker, ensure your `.env` file is not included in the image build
 
 ## 🚀 Advanced Features
