@@ -23,8 +23,8 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build Docker image
         run: |
-          docker build -t nhyira/sshbot:latest .
+          docker build -t nhyyeb/sshbot:latest .
 
       - name: Push Docker image
         run: |
-          docker push nhyira/sshbot:latest
+          docker push nhyyeb/sshbot:latest
