@@ -107,6 +107,9 @@ The `/terminal` command gives you direct SSH access through Discord:
    
    # Optional: Key passphrase (if your key has one)
    # SSH_KEY_PASSPHRASE=your_key_passphrase
+   
+   # Optional: User Restriction
+   ALLOWED_USER_ID=your_discord_user_id_here
    ```
    - **IMPORTANT**: Never commit your `.env` file to Git or share your tokens publicly
    - If you accidentally expose your Discord token, immediately reset it in the Discord Developer Portal

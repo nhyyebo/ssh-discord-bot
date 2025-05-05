@@ -115,6 +115,18 @@ client.on('interactionCreate', async interaction => {
 
   if (!client.commands.has(commandName)) return;
 
+  // User ID Check
+  const allowedUserId = process.env.ALLOWED_USER_ID;
+  if (allowedUserId && interaction.user.id !== allowedUserId) {
+    console.log(`Command '/${interaction.commandName}' denied for user ${interaction.user.id} (allowed: ${allowedUserId})`);
+    try {
+      await interaction.reply({ content: 'You are not authorized to use this bot.', ephemeral: true });
+    } catch (replyError) {
+      console.error('Error replying to unauthorized user:', replyError);
+    }
+    return; // Stop processing if user is not allowed
+  }
+
   try {
     // Check SSH connection and reconnect if needed
     if (!ssh.isConnected()) {
