@@ -1,4 +1,4 @@
-# 🐳 SSH Docker Discord Bot
+# 🐳 SSH Docker Discord Bot [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E71AS4YV)
 
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-brightgreen.svg)](https://nodejs.org)
 [![Discord.js](https://img.shields.io/badge/Discord.js-14.x-5865F2.svg)](https://discord.js.org)
